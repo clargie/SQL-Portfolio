@@ -1,0 +1,39 @@
+Create your own store! Your store should sell one type of things, like clothing or bikes, whatever you want your store to specialize in. You should have a table for all the items in your store, and at least 5 columns for the kind of data you think you'd need to store. You should sell at least 15 items, and use select statements to order your items by price and show at least one statistic about the items.
+
+CREATE TABLE shoes (id INTEGER PRIMARY KEY, brand TEXT, model TEXT, color TEXT, size TEXT, price INTEGER);
+
+INSERT INTO shoes VALUES (1, "Nike", "Air Max 270", "Black/Red", "US 8", 150);
+INSERT INTO shoes VALUES (2, "Adidas", "Ultraboost 21", "White/Blue", "US 9", 180);
+INSERT INTO shoes VALUES (3, "Puma", "RS-X Tech", "Black/Yellow", "US 10", 130);
+INSERT INTO shoes VALUES (4, "Reebok", "Club C 85", "White/Green", "US 11", 80);
+INSERT INTO shoes VALUES (5, "Vans", "Old Skool", "Red/White", "US 7", 65);
+INSERT INTO shoes VALUES (6, "New Balance", "Fresh Foam Roav", "Black/Grey", "US 8.5", 110);
+INSERT INTO shoes VALUES (7, "Fila", "Disruptor II", "Black/White", "US 10.5", 90);
+INSERT INTO shoes VALUES (8, "Converse", "Chuck Taylor All Star", "Navy Blue", "US 6", 55);
+INSERT INTO shoes VALUES (9, "Under Armour", "Charged Bandit 6", "Black/Red", "US 12", 120);
+INSERT INTO shoes VALUES (10, "Saucony", "Kinvara 12", "Grey/Blue", "US 9.5", 140);
+INSERT INTO shoes VALUES (11, "Brooks", "Ghost 13", "White/Grey", "US 7.5", 150);
+INSERT INTO shoes VALUES (12, "ASICS", "GEL-Kayano 28", "Black/Blue", "US 11.5", 180);
+INSERT INTO shoes VALUES (13, "Mizuno", "Wave Inspire 17", "Navy/Red", "US 10", 130);
+INSERT INTO shoes VALUES (14, "Hoka One One", "Clifton 8", "White/Grey", "US 8.5", 160);
+INSERT INTO shoes VALUES (15, "On Running", "Cloudswift", "Black/White", "US 9", 150);
+
+
+I have created a shoes table with columns for id, brand, model, color, size, and price. We have also added 15 different shoes to the table, each with their own unique information.
+
+
+To order the shoes by price, we can use the following SELECT statement:
+
+SELECT * FROM shoes ORDER BY price;
+
+
+This will retrieve all rows from the shoes table and order them by the price column in ascending order.
+
+
+To show a statistic about the shoes, we could use the following SELECT statement to retrieve the average price of all the shoes:
+
+SELECT AVG(price) FROM shoes;
+
+
+This will retrieve the average price from the shoes table.
+
