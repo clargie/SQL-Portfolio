@@ -1,0 +1,99 @@
+We’ve curated a set of interesting data sets for you: NASA astronauts, Superbowl results, Pokemon stats, NBA players, Top movies, Top countries by population, Solar system objects by size, Marvel characters, Furniture store sales, Earned KA badges, Winston's donut logs, Card game results, and NFL draft picks.
+
+Pick one of those data sets or create a data set like that, and use advanced SELECT queries to discover things about the data. What sort of questions might one have about that data, like if they were using it for an app or a business idea? Here are some ideas:
+
+What are average, max, and min values in the data?
+What about those numbers per category in the data (using HAVING)?
+What ways are there to group the data values that don’t exist yet (using CASE)?
+What interesting ways are there to filter the data (using AND/OR)?
+
+
+The "Top movies" dataset consists of the top 500 movies of all time according to IMDb. The dataset includes the movie title, release year, runtime, genre, rating, metascore, and number of votes. Here's a sample of the data:
+
+
+
+CREATE TABLE movies (
+    title TEXT,
+    year INTEGER,
+    runtime INTEGER,
+    genre TEXT,
+    rating REAL,
+    metascore INTEGER,
+    votes INTEGER
+);
+
+INSERT INTO movies (title, year, runtime, genre, rating, metascore, votes)
+VALUES 
+('The Shawshank Redemption', 1994, 142, 'Drama', 9.3, 80, 2354149),
+('The Godfather', 1972, 175, 'Crime, Drama', 9.2, 100, 1620449),
+('The Godfather: Part II', 1974, 202, 'Crime, Drama', 9.0, 90, 1121507),
+('The Dark Knight', 2008, 152, 'Action, Crime, Drama', 9.0, 84, 2331426),
+('12 Angry Men', 1957, 96, 'Crime, Drama', 8.9, 96, 729765),
+('Schindler''s List', 1993, 195, 'Biography, Drama, History', 8.9, 94, 1197484),
+('The Lord of the Rings: The Return of the King', 2003, 201, 'Action, Adventure, Drama', 8.9, 94, 1669876);
+
+
+
+What is the average rating of the top 100 movies of all time?
+
+
+SELECT 
+  AVG(rating) AS avg_rating, 
+  MAX(metascore) AS max_metascore, 
+  MIN(votes) AS min_votes 
+FROM movies;
+
+This query calculates the average rating, maximum metascore, and minimum number of votes for all movies in the table.
+
+
+
+What about those numbers per category in the data (using HAVING)?
+
+
+SELECT 
+  genre, 
+  AVG(rating) AS avg_rating, 
+  COUNT(*) AS num_movies 
+FROM movies 
+GROUP BY genre 
+HAVING COUNT(*) >= 2 
+ORDER BY avg_rating DESC;
+
+
+This query calculates the average rating and number of movies in each genre that has at least 2 movies in the table, and sorts the results by average rating in descending order.
+
+
+
+What ways are there to group the data values that don’t exist yet (using CASE)?
+
+
+SELECT 
+  CASE 
+    WHEN rating >= 9.0 THEN 'Excellent' 
+    WHEN rating >= 8.0 THEN 'Good' 
+    ELSE 'Okay' 
+  END AS rating_category, 
+  COUNT(*) AS num_movies 
+FROM movies 
+GROUP BY rating_category;
+
+
+
+This query groups movies into three categories based on their rating (excellent, good, or okay) using a CASE statement, and then calculates the number of movies in each category.
+
+
+
+What interesting ways are there to filter the data (using AND/OR)?
+
+
+SELECT 
+  title, 
+  year, 
+  rating 
+FROM movies 
+WHERE (year >= 1990 AND rating >= 8.5) OR genre LIKE '%Drama%';
+
+
+This query filters movies to show only those released after 1990 with a rating of at least 8.5, or movies that have the word "Drama" in their genre.
+
+
